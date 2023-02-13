@@ -27,7 +27,7 @@ services:
     volumes:
       - /path/to/local/recordings:/var/recordings
   camera2:
-    image: hpaolini/nvr
+    image: e7db/nvr
     environment:
       - TZ=America/New_York
       - DAYS=30
