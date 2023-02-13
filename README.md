@@ -11,7 +11,7 @@ docker run -it --rm  --name nvr \
   -v /path/to/local/recordings:/var/recordings \
   -e STREAM_URL="rtsp://username:password@ip:port/path" \
   -e CAMERA_NAME="My Camera" \
-  e7db/tiny-nvr
+  e7db/nvr
 ```
 
 ### Docker Compose
