@@ -1,6 +1,6 @@
 # docker-nvr
 
-A docker container to record any IP camera stream to disk.
+A [docker container](https://hub.docker.com/r/e7db/nvr) to record any IP camera stream to disk.
 
 ## Usage
 
