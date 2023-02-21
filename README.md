@@ -48,6 +48,7 @@ Find below a table listing all the different parameters you can use with the con
 | `TZ `                | UTC           | The time zone for file names date and time. |
 | `STREAM_URL`         |               | The URL to your camera feed. |
 | `CAMERA_NAME`        |               | The name used to create your camera recordings folder. |
+| `CONCATENATE`        | 1             | Assemble video segments into a daily video. Enabled if not empty. |
 | `DAYS`               |               | The days of recording to keep for the camera. An empty value means no limit. |
 | `VIDEO_SEGMENT_TIME` | 300           | The length in seconds of each recording file. |
 | `VIDEO_FORMAT`       | mp4           | The output video format. You can use any ffmpeg supported format. Recommended value: `mp4`, `flv` or `mkv`. |

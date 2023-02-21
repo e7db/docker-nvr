@@ -8,6 +8,7 @@ echo "Parameters:"
 echo "  TZ: $TZ"
 echo "  STREAM_URL: $STREAM_URL"
 echo "  CAMERA_NAME: $CAMERA_NAME"
+echo "  CONCATENATE: $1"
 echo "  DAYS: $DAYS"
 echo "  VIDEO_SEGMENT_TIME: $VIDEO_SEGMENT_TIME"
 echo "  VIDEO_FORMAT: $VIDEO_FORMAT"
@@ -22,12 +23,24 @@ if [ -z "$CAMERA_NAME" ]; then
     exit 1
 fi
 
+echo "#!/bin/bash" >"/etc/cron.nvr/1-concatenate"
+chmod +x "/etc/cron.nvr/1-concatenate"
+if [ ! -z "$CONCATENATE" ]; then
+    CRON=1
+    echo "[CRON] Concatenate daily recorded files..."
+    echo "/opt/nvr/concatenate.sh \"$DIRECTORY\" $VIDEO_FORMAT \$(date -d 'yesterday' '+%Y-%m-%d')" >>"/etc/cron.nvr/1-concatenate"
+fi
+
+echo "#!/bin/bash" >"/etc/cron.nvr/2-cleanup"
+chmod +x "/etc/cron.nvr/2-cleanup"
 if [ ! -z "$DAYS" ]; then
-    echo "#!/bin/sh" > "/etc/cron.daily/nvr-cleanup"
-    echo "find $DIRECTORY -type f -mtime +$DAYS -delete" >> "/etc/cron.daily/nvr-cleanup"
-    chmod +x "/etc/cron.daily/nvr-cleanup"
+    CRON=1
+    echo "[CRON] Clean up recordings older than $DAYS days..."
+    echo "/opt/nvr/cleanup.sh \"$DIRECTORY\" $DAYS" >>"/etc/cron.nvr/2-cleanup"
+fi
+
+if [ ! -z "$CRON" ]; then
     service cron start
-    echo
 fi
 
 echo "Saving \"$CAMERA_NAME\" camera stream..."
