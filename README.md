@@ -45,14 +45,14 @@ services:
 Find below a table listing all the different parameters you can use with the container,through the environment variables.
 | Variable             | Default       | Description |
 | :-                   | :-            | :- |
-| `TZ `                | UTC           | The time zone for file names date and time. |
+| `TZ`                 | UTC           | The time zone for file names date and time. |
 | `STREAM_URL`         |               | The URL to your camera feed. |
 | `CAMERA_NAME`        |               | The name used to create your camera recordings folder. |
-| `DAYS`               |               | The days of recording to keep for the camera. An empty value means no limit. |
+| `DAYS`               | 30            | The days of recording to keep for the camera. An empty value means no limit. |
 | `VIDEO_SEGMENT_TIME` | 300           | The length in seconds of each recording file. |
-| `VIDEO_FORMAT`       | mp4           | The output video format. You can use any ffmpeg supported format. Recommended value: `mp4`, `flv` or `mkv`. |
+| `VIDEO_FORMAT`       | mp4           | The daily videos output format. You can use any ffmpeg supported format. Recommended value: `mp4`, `ts`, `mkv` or `flv`. |
 
-By default, 5 minutes segments of MP4 video files will be created, named following the UTC time zone.
+By default, 5 minutes segments of `.ts` video files will be created. A daily video will be assembled from parts a few minutes after midnight.
 
 ### Stream URL
 
