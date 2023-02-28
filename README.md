@@ -49,6 +49,7 @@ Find below a table listing all the different parameters you can use with the con
 | `STREAM_URL`         |               | The URL to your camera feed. |
 | `CAMERA_NAME`        |               | The name used to create your camera recordings folder. |
 | `DAYS`               | 30            | The days of recording to keep for the camera. An empty value means no limit. |
+| `LOGLEVEL`           | info          | The ffmpeg log level. |
 | `VIDEO_SEGMENT_TIME` | 300           | The length in seconds of each recording file. |
 | `VIDEO_FORMAT`       | mp4           | The daily videos output format. You can use any ffmpeg supported format. Recommended value: `mp4`, `ts`, `mkv` or `flv`. |
 

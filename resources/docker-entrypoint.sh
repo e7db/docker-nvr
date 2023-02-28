@@ -47,4 +47,6 @@ ffmpeg \
     -segment_atclocktime 1 \
     -strftime 1 \
     "$DIRECTORY"/%Y-%m-%d_%H-%M-%S.ts \
-    -loglevel panic
+    -loglevel $LOGLEVEL \
+    1>>/proc/1/fd/1 \
+    2>>/proc/1/fd/2
