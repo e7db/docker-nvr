@@ -71,7 +71,7 @@ jobs:
         if: ${{ github.event_name == 'pull_request' }}
         uses: docker/scout-action@v1
         with:
-          command: cves,recommendations,compare
+          command: compare,cves,recommendations,sbom
           image: ${{ steps.meta.outputs.tags }}
           to: ${{ vars.GHCR_IMAGE }}:latest
           ignore-base: true
