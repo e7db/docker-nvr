@@ -23,15 +23,15 @@ echo "  VIDEO_FORMAT: $VIDEO_FORMAT"
 echo
 
 echo "[CRON] Concatenate daily recorded files..."
-echo "#!/bin/bash" >"/etc/cron.nvr/1-concatenate"
-echo "/opt/nvr/concatenate.sh "$CAMERA_NAME" \$(date -d 'yesterday' '+%Y-%m-%d')" $VIDEO_FORMAT >>"/etc/cron.nvr/1-concatenate"
-chmod +x "/etc/cron.nvr/1-concatenate"
+echo "#!/bin/bash" >"/etc/nvr.cron/1-concatenate"
+echo "/opt/nvr/concatenate.sh "$CAMERA_NAME" \$(date -d 'yesterday' '+%Y-%m-%d')" $VIDEO_FORMAT >>"/etc/nvr.cron/1-concatenate"
+chmod +x "/etc/nvr.cron/1-concatenate"
 
 if [ ! -z "$DAYS" ]; then
     echo "[CRON] Clean up recordings older than $DAYS days..."
-    echo "#!/bin/bash" >"/etc/cron.nvr/2-cleanup"
-    echo "/opt/nvr/cleanup.sh "$CAMERA_NAME" $DAYS" >>"/etc/cron.nvr/2-cleanup"
-    chmod +x "/etc/cron.nvr/2-cleanup"
+    echo "#!/bin/bash" >"/etc/nvr.cron/2-cleanup"
+    echo "/opt/nvr/cleanup.sh "$CAMERA_NAME" $DAYS" >>"/etc/nvr.cron/2-cleanup"
+    chmod +x "/etc/nvr.cron/2-cleanup"
 fi
 
 service cron start
